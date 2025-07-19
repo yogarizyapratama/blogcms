@@ -1,10 +1,15 @@
 const PageView = require('../models/PageView');
 const Article = require('../models/Article');
 const mongoose = require('mongoose');
+const { validationResult } = require('express-validator');
+
 exports.track = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const { article } = req.body;
-    if (!article) return res.status(400).json({ message: 'Article ID required' });
     const exists = await Article.findById(article);
     if (!exists) return res.status(404).json({ message: 'Article not found' });
     await PageView.create({ article });

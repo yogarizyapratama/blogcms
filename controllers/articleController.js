@@ -1,8 +1,9 @@
 const Article = require('../models/Article');
+const { validationResult } = require('express-validator');
+
 exports.getAll = async (req, res, next) => {
   try {
     const filter = { status: 'published' };
-    console.log('req.user', req.user);
 
     if (req.user) {
       filter.$or = [
@@ -31,8 +32,11 @@ exports.getOne = async (req, res, next) => {
 };
 exports.create = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const { title, content, status } = req.body;
-    if (!title || !content) return res.status(400).json({ message: 'Title and content required' });
     const article = await Article.create({ title, content, status: status || 'draft', user: req.user._id });
     res.status(201).json(article);
   } catch (err) {
@@ -41,6 +45,10 @@ exports.create = async (req, res, next) => {
 };
 exports.update = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const article = await Article.findById(req.params.id);
     if (!article) return res.status(404).json({ message: 'Article not found' });
     if (article.user.toString() !== req.user._id.toString()) return res.status(403).json({ message: 'Forbidden' });

@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const { validationResult } = require('express-validator');
+
 exports.getAll = async (req, res, next) => {
   try {
     const users = await User.find().select('-password');
@@ -19,8 +21,11 @@ exports.getOne = async (req, res, next) => {
 };
 exports.create = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const { name, username, password } = req.body;
-    if (!name || !username || !password) return res.status(400).json({ message: 'All fields required' });
     const exists = await User.findOne({ username });
     if (exists) return res.status(409).json({ message: 'Username already exists' });
     const hash = await bcrypt.hash(password, 10);
@@ -32,6 +37,10 @@ exports.create = async (req, res, next) => {
 };
 exports.update = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     if (req.user._id.toString() !== req.params.id) return res.status(403).json({ message: 'Forbidden' });
     const { name, password } = req.body;
     const update = {};
