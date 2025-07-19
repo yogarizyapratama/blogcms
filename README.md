@@ -16,12 +16,25 @@
    - username: `superadmin`
    - password: `superpassword`
 
+
 5. Start API (local):
    ```bash
    node app.js
    ```
 
-## Deploy ke Vercel
+## Jalankan dengan Docker
+
+1. Build image:
+   ```bash
+   docker build -t blogcms-api .
+   ```
+2. Jalankan container:
+   ```bash
+   docker run --env-file .env -p 3000:3000 blogcms-api
+   ```
+   (Pastikan MongoDB juga berjalan dan dapat diakses dari container)
+
+## Deploy ke Vercel Optional For Development Purpose
 
 1. Pastikan sudah punya akun Vercel (https://vercel.com/)
 2. Push project ke repository GitHub/GitLab/Bitbucket
