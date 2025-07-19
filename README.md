@@ -22,17 +22,27 @@
    node app.js
    ```
 
-## Jalankan dengan Docker
 
-1. Build image:
+## Jalankan dengan Docker Compose
+
+1. Pastikan Docker Desktop sudah berjalan.
+2. Pastikan file `.env` sudah ada dan terisi.
+3. Jalankan perintah berikut di folder project:
    ```bash
-   docker build -t blogcms-api .
+   docker compose up --build
    ```
-2. Jalankan container:
+   Ini akan menjalankan API dan MongoDB sekaligus.
+4. API dapat diakses di `http://localhost:3000`.
+5. Untuk menghentikan semua service:
    ```bash
-   docker run --env-file .env -p 3000:3000 blogcms-api
+   docker compose down
    ```
-   (Pastikan MongoDB juga berjalan dan dapat diakses dari container)
+6. (Opsional) Jalankan perintah di dalam container API, misal membuat super user:
+   ```bash
+   docker compose exec api node scripts/createSuperUser.js
+   ```
+
+
 
 ## Deploy ke Vercel Optional For Development Purpose
 
