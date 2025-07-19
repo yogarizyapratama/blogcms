@@ -1,0 +1,155 @@
+{
+  "info": {
+    "_postman_id": "blog-cms-api-collection",
+    "name": "Blog CMS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\"\n}"},
+            "url": {"raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"]}
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/auth/logout", "host": ["{{baseUrl}}"], "path": ["auth", "logout"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/user", "host": ["{{baseUrl}}"], "path": ["user"]}}
+        },
+        {
+          "name": "Get User by ID",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/user/:id", "host": ["{{baseUrl}}"], "path": ["user", ":id"]}}
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"string\",\n  \"username\": \"string\",\n  \"password\": \"string\"\n}"},
+            "url": {"raw": "{{baseUrl}}/user", "host": ["{{baseUrl}}"], "path": ["user"]}
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"string\",\n  \"password\": \"string\"\n}"},
+            "url": {"raw": "{{baseUrl}}/user/:id", "host": ["{{baseUrl}}"], "path": ["user", ":id"]}
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/user/:id", "host": ["{{baseUrl}}"], "path": ["user", ":id"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Article",
+      "item": [
+        {
+          "name": "Get All Articles",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/article", "host": ["{{baseUrl}}"], "path": ["article"]}}
+        },
+        {
+          "name": "Get Article by ID",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/article/:id", "host": ["{{baseUrl}}"], "path": ["article", ":id"]}}
+        },
+        {
+          "name": "Create Article",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"string\",\n  \"content\": \"string\",\n  \"status\": \"draft|published\"\n}"},
+            "url": {"raw": "{{baseUrl}}/article", "host": ["{{baseUrl}}"], "path": ["article"]}
+          }
+        },
+        {
+          "name": "Update Article",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"string\",\n  \"content\": \"string\",\n  \"status\": \"draft|published\"\n}"},
+            "url": {"raw": "{{baseUrl}}/article/:id", "host": ["{{baseUrl}}"], "path": ["article", ":id"]}
+          }
+        },
+        {
+          "name": "Delete Article",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/article/:id", "host": ["{{baseUrl}}"], "path": ["article", ":id"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Page View",
+      "item": [
+        {
+          "name": "Track Page View",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"article\": \"articleId\"\n}"},
+            "url": {"raw": "{{baseUrl}}/page-view", "host": ["{{baseUrl}}"], "path": ["page-view"]}
+          }
+        },
+        {
+          "name": "Get Page View Count",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/page-view/count", "host": ["{{baseUrl}}"], "path": ["page-view", "count"], "query": []}
+          }
+        },
+        {
+          "name": "Get Page View Count by Article",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/page-view/count?article=articleId", "host": ["{{baseUrl}}"], "path": ["page-view", "count"], "query": [{"key": "article", "value": "articleId"}]}
+          }
+        },
+        {
+          "name": "Get Page View Count by Date Range",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/page-view/count?startAt=ISO1&endAt=ISO2", "host": ["{{baseUrl}}"], "path": ["page-view", "count"], "query": [{"key": "startAt", "value": "ISO1"}, {"key": "endAt", "value": "ISO2"}]}
+          }
+        },
+        {
+          "name": "Get Page View Aggregate by Interval",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/page-view/aggregate-date?interval=daily", "host": ["{{baseUrl}}"], "path": ["page-view", "aggregate-date"], "query": [{"key": "interval", "value": "daily"}]}
+          }
+        }
+      ]
+    }
+  ]
+}
