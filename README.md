@@ -42,23 +42,6 @@
    docker compose exec api node scripts/createSuperUser.js
    ```
 
-
-
-## Deploy ke Vercel Optional For Development Purpose
-
-1. Pastikan sudah punya akun Vercel (https://vercel.com/)
-2. Push project ke repository GitHub/GitLab/Bitbucket
-3. Di dashboard Vercel, klik "Add New Project" dan pilih repo Anda
-4. Pada pengaturan build & output:
-   - Framework preset: **Other**
-   - Output directory: (kosongkan)
-   - Build command: (kosongkan)
-   - Install command: `npm install`
-   - Entry point: `app.js`
-5. Tambahkan environment variable (`MONGODB_URI`, `JWT_SECRET`, dll) di dashboard Vercel sesuai `.env.example`
-6. Deploy
-
-
 ## Domain Development (Vercel)
 
 API versi development juga dapat diakses di:
