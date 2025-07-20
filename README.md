@@ -59,7 +59,7 @@
 ## Domain Development (Vercel)
 
 API versi development juga dapat diakses di:
-https://blogcms-eosin-ten.vercel.app/
+https://blogcms-beryl.vercel.app/
 
 File `vercel.json` sudah disiapkan agar API berjalan di Vercel Serverless Functions.
 
