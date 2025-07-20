@@ -19,6 +19,7 @@ router.patch('/:id',
   auth,
   [
     body('name').optional().isString().notEmpty(),
+    body('username').optional().isString().notEmpty().withMessage('Username is required'),
     body('password').optional().isString().isLength({ min: 6 }),
   ],
   userController.update

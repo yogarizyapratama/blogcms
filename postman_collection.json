@@ -51,8 +51,14 @@
           "name": "Update User",
           "request": {
             "method": "PATCH",
-            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
-            "body": {"mode": "raw", "raw": "{\n  \"name\": \"string\",\n  \"password\": \"string\"\n}"},
+            "header": [
+              {"key": "Authorization", "value": "Bearer {{token}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"username\": \"newusername\",\n  \"password\": \"string\"\n}"
+            },
             "url": {"raw": "{{baseUrl}}/user/:id", "host": ["{{baseUrl}}"], "path": ["user", ":id"]}
           }
         },
