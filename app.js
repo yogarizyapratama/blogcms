@@ -30,7 +30,6 @@ app.use('/user', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/article', articleRoutes);
 app.use('/page-view', pageViewRoutes);
-
 app.get('/', (req, res) => res.json({ message: 'API is running' }));
 
 // Global error handler
