@@ -13,7 +13,7 @@
           "request": {
             "method": "POST",
             "header": [{"key": "Content-Type", "value": "application/json"}],
-            "body": {"mode": "raw", "raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\"\n}"},
+            "body": {"mode": "raw", "raw": "{\n  \"username\": \"superadmin\",\n  \"password\": \"superpassword\"\n}"},
             "url": {"raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"]}
           }
         },
