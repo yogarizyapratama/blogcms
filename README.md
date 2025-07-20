@@ -58,6 +58,12 @@
 5. Tambahkan environment variable (`MONGODB_URI`, `JWT_SECRET`, dll) di dashboard Vercel sesuai `.env.example`
 6. Deploy
 
+
+## Domain Development (Vercel)
+
+API versi development juga dapat diakses di:
+https://blogcms-eosin-ten.vercel.app/
+
 File `vercel.json` sudah disiapkan agar API berjalan di Vercel Serverless Functions.
 
 
